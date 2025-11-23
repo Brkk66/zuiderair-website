@@ -19,47 +19,93 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="bg-white hover:shadow-lg transition-shadow duration-300"
-            >
-              <CardContent className="pt-6">
-                {/* Quote Icon */}
-                <Quote className="w-10 h-10 text-primary/20 mb-4" />
+        {/* Testimonials - Scrollable on mobile, Grid on desktop */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Mobile/Tablet: Horizontal Scroll */}
+          <div className="lg:hidden flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide scroll-smooth px-4 -mx-4">
+            {testimonials.map((testimonial, index) => (
+              <Card
+                key={index}
+                className="bg-white hover:shadow-lg transition-shadow duration-300 flex-shrink-0 w-[85vw] sm:w-[45vw] snap-center"
+              >
+                <CardContent className="pt-6">
+                  {/* Quote Icon */}
+                  <Quote className="w-10 h-10 text-primary/20 mb-4" />
 
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
+                  {/* Rating */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                  </div>
 
-                {/* Review Text */}
-                <p className="text-foreground/90 mb-6 leading-relaxed">
-                  "{testimonial.text}"
-                </p>
+                  {/* Review Text */}
+                  <p className="text-foreground/90 mb-6 leading-relaxed">
+                    "{testimonial.text}"
+                  </p>
 
-                {/* Author Info */}
-                <div className="border-t border-border pt-4">
-                  <p className="font-semibold text-foreground">
-                    {testimonial.name}
+                  {/* Author Info */}
+                  <div className="border-t border-border pt-4">
+                    <p className="font-semibold text-foreground">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.location}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {testimonial.date}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Desktop: Grid Layout */}
+          <div className="hidden lg:grid grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <Card
+                key={index}
+                className="bg-white hover:shadow-lg transition-shadow duration-300"
+              >
+                <CardContent className="pt-6">
+                  {/* Quote Icon */}
+                  <Quote className="w-10 h-10 text-primary/20 mb-4" />
+
+                  {/* Rating */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Review Text */}
+                  <p className="text-foreground/90 mb-6 leading-relaxed">
+                    "{testimonial.text}"
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.location}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {testimonial.date}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+
+                  {/* Author Info */}
+                  <div className="border-t border-border pt-4">
+                    <p className="font-semibold text-foreground">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.location}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {testimonial.date}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>
